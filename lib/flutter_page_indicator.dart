@@ -3,10 +3,9 @@ library flutter_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
 class WarmPainter extends BasePainter {
-  WarmPainter(PageIndicator widget, double page, int index, Paint paint) : super(widget, page, index, paint);
-
+  WarmPainter(PageIndicator widget, double page, int index, Paint paint)
+      : super(widget, page, index, paint);
 
   void draw(Canvas canvas, double space, double size, double radius) {
     double progress = page - index;
@@ -34,11 +33,9 @@ class WarmPainter extends BasePainter {
   }
 }
 
-
 class DropPainter extends BasePainter {
-  DropPainter(PageIndicator widget, double page, int index, Paint paint) : super(widget, page, index, paint);
-
-
+  DropPainter(PageIndicator widget, double page, int index, Paint paint)
+      : super(widget, page, index, paint);
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
@@ -58,9 +55,8 @@ class DropPainter extends BasePainter {
 }
 
 class NonePainter extends BasePainter {
-  NonePainter(PageIndicator widget, double page, int index, Paint paint) : super(widget, page, index, paint);
-
-
+  NonePainter(PageIndicator widget, double page, int index, Paint paint)
+      : super(widget, page, index, paint);
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
@@ -78,9 +74,8 @@ class NonePainter extends BasePainter {
 }
 
 class SlidePainter extends BasePainter {
-  SlidePainter(PageIndicator widget, double page, int index, Paint paint) : super(widget, page, index, paint);
-
-
+  SlidePainter(PageIndicator widget, double page, int index, Paint paint)
+      : super(widget, page, index, paint);
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
@@ -90,15 +85,17 @@ class SlidePainter extends BasePainter {
 }
 
 class ScalePainter extends BasePainter {
-
   final double scale;
 
-  ScalePainter(PageIndicator widget, double page, int index, Paint paint,this.scale) : super(widget, page, index, paint);
+  ScalePainter(
+      PageIndicator widget, double page, int index, Paint paint, this.scale)
+      : super(widget, page, index, paint);
 
   @override
   bool _shouldSkip(int i) {
     return i == index || i == index + 1;
   }
+
   @override
   void paint(Canvas canvas, Size size) {
     _paint.color = widget.color;
@@ -106,11 +103,11 @@ class ScalePainter extends BasePainter {
     double size = widget.size;
     double radius = size / 2;
     for (int i = 0, c = widget.count; i < c; ++i) {
-      if(_shouldSkip(i)){
+      if (_shouldSkip(i)) {
         continue;
       }
-      canvas.drawCircle(
-          new Offset(i * (size + space) + radius, radius ), radius* widget.scale, _paint);
+      canvas.drawCircle(new Offset(i * (size + space) + radius, radius),
+          radius * widget.scale, _paint);
     }
 
     double page = this.page;
@@ -139,8 +136,8 @@ class ScalePainter extends BasePainter {
 }
 
 class ColorPainter extends BasePainter {
-  ColorPainter(PageIndicator widget, double page, int index, Paint paint) : super(widget, page, index, paint);
-
+  ColorPainter(PageIndicator widget, double page, int index, Paint paint)
+      : super(widget, page, index, paint);
 
   @override
   bool _shouldSkip(int i) {
@@ -170,16 +167,15 @@ abstract class BasePainter extends CustomPainter {
   final int index;
   final Paint _paint;
 
-
   double lerp(double begin, double end, double progress) {
     return begin + (end - begin) * progress;
   }
 
-  BasePainter(this.widget, this.page, this.index,this._paint);
+  BasePainter(this.widget, this.page, this.index, this._paint);
 
   void draw(Canvas canvas, double space, double size, double radius);
 
-  bool _shouldSkip(int index){
+  bool _shouldSkip(int index) {
     return false;
   }
 
@@ -190,7 +186,7 @@ abstract class BasePainter extends CustomPainter {
     double size = widget.size;
     double radius = size / 2;
     for (int i = 0, c = widget.count; i < c; ++i) {
-      if(_shouldSkip(i)){
+      if (_shouldSkip(i)) {
         continue;
       }
       canvas.drawCircle(
@@ -218,18 +214,23 @@ class _PageIndicatorState extends State<PageIndicator> {
   BasePainter _createPainer() {
     switch (widget.layout) {
       case PageIndicatorLayout.none:
-        return new NonePainter(widget, widget.controller.page ?? 0.0, index,_paint);
+        return new NonePainter(
+            widget, widget.controller.page ?? 0.0, index, _paint);
       case PageIndicatorLayout.slide:
-        return new SlidePainter(widget, widget.controller.page ?? 0.0, index,_paint);
+        return new SlidePainter(
+            widget, widget.controller.page ?? 0.0, index, _paint);
       case PageIndicatorLayout.warm:
-        return new WarmPainter(widget, widget.controller.page ?? 0.0, index,_paint);
+        return new WarmPainter(
+            widget, widget.controller.page ?? 0.0, index, _paint);
       case PageIndicatorLayout.color:
-        return new ColorPainter(widget, widget.controller.page ?? 0.0, index,_paint);
+        return new ColorPainter(
+            widget, widget.controller.page ?? 0.0, index, _paint);
       case PageIndicatorLayout.scale:
         return new ScalePainter(
-            widget, widget.controller.page ?? 0.0, index,_paint, widget.scale);
+            widget, widget.controller.page ?? 0.0, index, _paint, widget.scale);
       case PageIndicatorLayout.drop:
-        return new DropPainter(widget, widget.controller.page ?? 0.0, index,_paint);
+        return new DropPainter(
+            widget, widget.controller.page ?? 0.0, index, _paint);
       default:
         throw new Exception("Not a valid layout");
     }
@@ -237,7 +238,6 @@ class _PageIndicatorState extends State<PageIndicator> {
 
   @override
   Widget build(BuildContext context) {
-
     Widget child = new SizedBox(
       width: widget.count * widget.size + (widget.count - 1) * widget.space,
       height: widget.size,
@@ -246,7 +246,8 @@ class _PageIndicatorState extends State<PageIndicator> {
       ),
     );
 
-    if(widget.layout == PageIndicatorLayout.scale || widget.layout == PageIndicatorLayout.color){
+    if (widget.layout == PageIndicatorLayout.scale ||
+        widget.layout == PageIndicatorLayout.color) {
       child = new ClipRect(
         child: child,
       );
@@ -288,8 +289,6 @@ enum PageIndicatorLayout {
 }
 
 class PageIndicator extends StatefulWidget {
-
-
   /// size of the dots
   final double size;
 
