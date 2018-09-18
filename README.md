@@ -1,9 +1,17 @@
+
+
+
 # flutter_page_indicator
 
-A new flutter package project.
+Page indicator for flutter, with multiple build-in layouts.
+
+## Show cases
+
+![showcases](https://github.com/jzoom/images/raw/master/page_indicator.gif)
+
 
 ## Getting Started
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
 
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+
+

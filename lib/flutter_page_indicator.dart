@@ -3,7 +3,6 @@ library flutter_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
 Paint _paint = new Paint();
 
 class WarmPainter extends BasePainter {
@@ -35,6 +34,7 @@ class WarmPainter extends BasePainter {
     }
   }
 }
+
 class FillPainter extends BasePainter {
   FillPainter(PageIndicator widget, double page, int index)
       : super(widget, page, index);
@@ -46,12 +46,9 @@ class FillPainter extends BasePainter {
     double size = widget.size;
     double radius = size / 2;
     for (int i = 0, c = widget.count; i < c; ++i) {
-      canvas.drawCircle(new Offset(i * (size + space) + radius, radius),
-          radius , _paint);
-
+      canvas.drawCircle(
+          new Offset(i * (size + space) + radius, radius), radius, _paint);
     }
-
-
 
     double page = this.page;
     if (page < index) {
@@ -66,49 +63,47 @@ class FillPainter extends BasePainter {
   }
 
   @override
-  void draw(Canvas canvas, double space, double size, double radius) {
-
-  }
+  void draw(Canvas canvas, double space, double size, double radius) {}
 }
 
-
-class DropPainter extends BasePainter{
-  DropPainter(PageIndicator widget, double page, int index) : super(widget, page, index);
+class DropPainter extends BasePainter {
+  DropPainter(PageIndicator widget, double page, int index)
+      : super(widget, page, index);
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
-
     double progress = page - index;
     double dropHeight = widget.dropHeight;
-    double rate = (0.5-progress).abs()*2;
+    double rate = (0.5 - progress).abs() * 2;
     double scale = widget.scale;
 
     //lerp(begin, end, progress)
 
     canvas.drawCircle(
-        new Offset(radius + ((page) * (size + space)), radius - dropHeight *  (1-rate) ),
-        radius * (scale+rate*(1.0-scale)) ,
+        new Offset(radius + ((page) * (size + space)),
+            radius - dropHeight * (1 - rate)),
+        radius * (scale + rate * (1.0 - scale)),
         _paint);
   }
-
 }
 
-class NonePainter extends BasePainter{
-  NonePainter(PageIndicator widget, double page, int index) : super(widget, page, index);
+class NonePainter extends BasePainter {
+  NonePainter(PageIndicator widget, double page, int index)
+      : super(widget, page, index);
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
     double progress = page - index;
-    if(progress>0.5){
+    if (progress > 0.5) {
       canvas.drawCircle(
-          new Offset(radius + ((index+1) * (size + space)), radius), radius, _paint);
-    }else{
-      canvas.drawCircle(
-          new Offset(radius + (index * (size + space)), radius), radius, _paint);
+          new Offset(radius + ((index + 1) * (size + space)), radius),
+          radius,
+          _paint);
+    } else {
+      canvas.drawCircle(new Offset(radius + (index * (size + space)), radius),
+          radius, _paint);
     }
-
   }
-
 }
 
 class SlidePainter extends BasePainter {
@@ -148,7 +143,6 @@ class ScalePainter extends BasePainter {
 
     draw(canvas, space, size, radius);
   }
-
 
   @override
   void draw(Canvas canvas, double space, double size, double radius) {
@@ -276,14 +270,13 @@ class _PageIndicatorState extends State<PageIndicator> {
   Widget build(BuildContext context) {
     _paint.color = Colors.white;
     return new IgnorePointer(
-      child:  new SizedBox(
-          width: widget.count * widget.size + (widget.count - 1) * widget.space,
-          height: widget.size,
-          child: new CustomPaint(
-            painter: _createPainer(),
-          ),
+      child: new SizedBox(
+        width: widget.count * widget.size + (widget.count - 1) * widget.space,
+        height: widget.size,
+        child: new CustomPaint(
+          painter: _createPainer(),
         ),
-
+      ),
     );
   }
 
@@ -314,30 +307,29 @@ enum PageIndicatorLayout {
   color,
   scale,
   drop,
- // thinWarm,
+  // thinWarm,
 }
 
 class PageIndicator extends StatefulWidget {
 
 
+  /// size of the dots
   final double size;
 
-
+  /// space between dots.
   final double space;
 
-
+  /// count of dots
   final int count;
 
-
+  /// active color
   final Color activeColor;
 
-
+  /// normal color
   final Color color;
 
-
+  /// layout of the dots,default is [PageIndicatorLayout.slide]
   final PageIndicatorLayout layout;
-
-
 
   // Only valid when layout==PageIndicatorLayout.scale
   final double scale;
@@ -345,9 +337,7 @@ class PageIndicator extends StatefulWidget {
   // Only valid when layout==PageIndicatorLayout.drop
   final double dropHeight;
 
-
   final PageController controller;
-
 
   PageIndicator(
       {this.size,
@@ -358,7 +348,7 @@ class PageIndicator extends StatefulWidget {
       this.layout: PageIndicatorLayout.slide,
       this.activeColor: Colors.white,
       this.scale: 0.6,
-      this.dropHeight : 25.0});
+      this.dropHeight: 20.0});
 
   @override
   State<StatefulWidget> createState() {
