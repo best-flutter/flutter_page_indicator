@@ -47,7 +47,7 @@ new PageIndicator(
 | :------------ |:---------------:|:---------------:|
 | PageIndicatorLayout.none | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator1.gif)  | From 0.0.1 |
 | PageIndicatorLayout.slide | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator2.gif)  | From 0.0.1 |
-| PageIndicatorLayout.warm | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator3.gif)  | From 0.0.1 |
+| PageIndicatorLayout.warm | ![](https://raw.githubusercontent.com/jzoom/images/master/warm.gif)  | From 0.0.1 |
 | PageIndicatorLayout.color | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator4.gif)  | From 0.0.1 |
 | PageIndicatorLayout.scale | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator5.gif)  | From 0.0.1 |
-| PageIndicatorLayout.drop | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator6.gif)  | From 0.0.1 |
+| PageIndicatorLayout.drop | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator7.gif)  | From 0.0.1 |
