@@ -1,5 +1,10 @@
 
 
+<p align="center">
+    <a href="https://pub.dartlang.org/packages/flutter_page_indicator">
+        <img src="https://img.shields.io/pub/v/flutter_page_indicator.svg" alt="pub package" />
+    </a>
+</p>
 
 # flutter_page_indicator
 
