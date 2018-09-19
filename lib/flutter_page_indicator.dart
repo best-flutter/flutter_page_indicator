@@ -285,7 +285,6 @@ enum PageIndicatorLayout {
   color,
   scale,
   drop,
-  // thinWarm,
 }
 
 class PageIndicator extends StatefulWidget {
@@ -316,15 +315,18 @@ class PageIndicator extends StatefulWidget {
   final PageController controller;
 
   PageIndicator(
-      {this.size,
-      this.space,
+      {Key key,
+      this.size: 20.0,
+      this.space: 5.0,
       this.count,
       this.controller,
       this.color: Colors.white30,
       this.layout: PageIndicatorLayout.slide,
       this.activeColor: Colors.white,
       this.scale: 0.6,
-      this.dropHeight: 20.0});
+      this.dropHeight: 20.0})
+      : assert(count != null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() {
