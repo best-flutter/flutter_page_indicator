@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 
+import "package:transformer_page_view/transformer_page_view.dart";
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -93,11 +95,16 @@ class _RadioGroupState extends State<RadioGroup> {
 class _MyHomePageState extends State<MyHomePage> {
   int _index = 1;
 
+  double size = 20.0;
+  double activeSize = 30.0;
+
   PageController controller;
 
-  PageIndicatorLayout layout = PageIndicatorLayout.slide;
+  PageIndicatorLayout layout = PageIndicatorLayout.SLIDE;
 
   List<PageIndicatorLayout> layouts = PageIndicatorLayout.values;
+
+  bool loop = false;
 
   @override
   void initState() {
@@ -106,13 +113,52 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void didUpdateWidget(MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var children = <Widget>[
+      new Container(
+        color: Colors.red,
+      ),
+      new Container(
+        color: Colors.green,
+      ),
+      new Container(
+        color: Colors.blueAccent,
+      ),
+      new Container(
+        color: Colors.grey,
+      )
+    ];
     return new Scaffold(
         appBar: new AppBar(
           title: new Text(widget.title),
         ),
         body: new Column(
           children: <Widget>[
+            new Row(
+              children: <Widget>[
+                new Checkbox(
+                    value: loop,
+                    onChanged: (bool value) {
+                      setState(() {
+                        if (value) {
+                          controller = new TransformerPageController(
+                              itemCount: 4, loop: true);
+                        } else {
+                          controller = new PageController(
+                            initialPage: 0,
+                          );
+                        }
+                        loop = value;
+                      });
+                    }),
+                new Text("loop"),
+              ],
+            ),
             new RadioGroup(
               titles: layouts.map((s) {
                 var str = s.toString();
@@ -128,30 +174,23 @@ class _MyHomePageState extends State<MyHomePage> {
             new Expanded(
                 child: new Stack(
               children: <Widget>[
-                new PageView(
-                  controller: controller,
-                  children: <Widget>[
-                    new Container(
-                      color: Colors.red,
-                    ),
-                    new Container(
-                      color: Colors.green,
-                    ),
-                    new Container(
-                      color: Colors.blueAccent,
-                    ),
-                    new Container(
-                      color: Colors.grey,
-                    )
-                  ],
-                ),
+                loop
+                    ? new TransformerPageView.children(
+                        children: children,
+                        pageController: controller,
+                      )
+                    : new PageView(
+                        controller: controller,
+                        children: children,
+                      ),
                 new Align(
                   alignment: Alignment.bottomCenter,
                   child: new Padding(
                     padding: new EdgeInsets.only(bottom: 20.0),
                     child: new PageIndicator(
                       layout: layout,
-                      size: 20.0,
+                      size: size,
+                      activeSize: activeSize,
                       controller: controller,
                       space: 5.0,
                       count: 4,

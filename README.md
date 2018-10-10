@@ -36,7 +36,7 @@ in your project's root directory.
 
 ```
 new PageIndicator(
-  layout: PageIndicatorLayout.slide,
+  layout: PageIndicatorLayout.SLIDE,
   size: 20.0,
   controller: YOUR_PAGE_CONTROLLER,
   space: 5.0,
@@ -50,9 +50,9 @@ new PageIndicator(
 
 | Layout  | Showcase   | Support version   | 
 | :------------ |:---------------:|:---------------:|
-| PageIndicatorLayout.none | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator1.gif)  | From 0.0.1 |
-| PageIndicatorLayout.slide | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator2.gif)  | From 0.0.1 |
-| PageIndicatorLayout.warm | ![](https://raw.githubusercontent.com/jzoom/images/master/warm.gif)  | From 0.0.1 |
-| PageIndicatorLayout.color | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator4.gif)  | From 0.0.1 |
-| PageIndicatorLayout.scale | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator5.gif)  | From 0.0.1 |
-| PageIndicatorLayout.drop | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator7.gif)  | From 0.0.1 |
+| PageIndicatorLayout.NONE | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator1.gif)  | From 0.0.1 |
+| PageIndicatorLayout.SLIDE | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator2.gif)  | From 0.0.1 |
+| PageIndicatorLayout.WARM | ![](https://raw.githubusercontent.com/jzoom/images/master/warm.gif)  | From 0.0.1 |
+| PageIndicatorLayout.COLOR | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator4.gif)  | From 0.0.1 |
+| PageIndicatorLayout.SCALE | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator5.gif)  | From 0.0.1 |
+| PageIndicatorLayout.DROP | ![](https://raw.githubusercontent.com/jzoom/images/master/indicator7.gif)  | From 0.0.1 |

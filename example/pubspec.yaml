@@ -23,6 +23,9 @@ dependencies:
   flutter_page_indicator:
     path: ../
 
+  transformer_page_view:
+    path: /Users/jzoom/SourceCode/transformer_page_view
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
