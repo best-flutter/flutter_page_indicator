@@ -243,7 +243,7 @@ class _PageIndicatorState extends State<PageIndicator> {
   @override
   Widget build(BuildContext context) {
     Widget child = new SizedBox(
-      width: widget.count * widget.size + (widget.count - 1) * widget.space,
+      width: widget.count > 0 ? widget.count * widget.size + (widget.count - 1) * widget.space : 0.0,
       height: widget.size,
       child: new CustomPaint(
         painter: _createPainer(),
