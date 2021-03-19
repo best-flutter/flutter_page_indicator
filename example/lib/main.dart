@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:another_transformer_page_view/another_transformer_page_view.dart';
 
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,21 +19,24 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
 class RadioGroup extends StatefulWidget {
-  final List<String> titles;
+  final List<String>? titles;
 
   final ValueChanged<int> onIndexChanged;
 
-  const RadioGroup({Key key, this.titles, this.onIndexChanged})
-      : super(key: key);
+  const RadioGroup({
+    Key? key,
+    this.titles,
+    required this.onIndexChanged,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -48,7 +50,7 @@ class _RadioGroupState extends State<RadioGroup> {
   @override
   Widget build(BuildContext context) {
     List<Widget> list = [];
-    for (int i = 0; i < widget.titles.length; ++i) {
+    for (int i = 0; i < widget.titles!.length; ++i) {
       list.add(((String title, int index) {
         return new Row(
           mainAxisSize: MainAxisSize.min,
@@ -56,16 +58,16 @@ class _RadioGroupState extends State<RadioGroup> {
             new Radio<int>(
                 value: index,
                 groupValue: _index,
-                onChanged: (int index) {
+                onChanged: (int? index) {
                   setState(() {
-                    _index = index;
+                    _index = index!;
                     widget.onIndexChanged(_index);
                   });
                 }),
             new Text(title)
           ],
         );
-      })(widget.titles[i], i));
+      })(widget.titles![i], i));
     }
 
     return new Wrap(
@@ -80,13 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
   double size = 20.0;
   double activeSize = 30.0;
 
-  PageController controller;
+  PageController? controller;
 
   PageIndicatorLayout layout = PageIndicatorLayout.SLIDE;
 
   List<PageIndicatorLayout> layouts = PageIndicatorLayout.values;
 
-  bool loop = false;
+  bool? loop = false;
 
   @override
   void initState() {
@@ -117,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text(widget.title),
+          title: new Text(widget.title!),
         ),
         body: new Column(
           children: <Widget>[
@@ -125,9 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 new Checkbox(
                     value: loop,
-                    onChanged: (bool value) {
+                    onChanged: (bool? value) {
                       setState(() {
-                        if (value) {
+                        if (value!) {
                           controller = new TransformerPageController(
                               itemCount: 4, loop: true);
                         } else {
@@ -156,10 +158,11 @@ class _MyHomePageState extends State<MyHomePage> {
             new Expanded(
                 child: new Stack(
               children: <Widget>[
-                loop
+                loop!
                     ? new TransformerPageView.children(
                         children: children,
-                        pageController: controller,
+                        pageController:
+                            controller as TransformerPageController?,
                       )
                     : new PageView(
                         controller: controller,
@@ -173,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       layout: layout,
                       size: size,
                       activeSize: activeSize,
-                      controller: controller,
+                      controller: controller!,
                       space: 5.0,
                       count: 4,
                     ),
