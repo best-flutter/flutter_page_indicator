@@ -123,26 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: new Column(
           children: <Widget>[
-            new Row(
-              children: <Widget>[
-                new Checkbox(
-                    value: loop,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        if (value!) {
-                          controller = new TransformerPageController(
-                              itemCount: 4, loop: true);
-                        } else {
-                          controller = new PageController(
-                            initialPage: 0,
-                          );
-                        }
-                        loop = value;
-                      });
-                    }),
-                new Text("loop"),
-              ],
-            ),
             new RadioGroup(
               titles: layouts.map((s) {
                 var str = s.toString();
