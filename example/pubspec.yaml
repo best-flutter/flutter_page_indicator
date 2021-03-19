@@ -10,7 +10,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -23,8 +23,7 @@ dependencies:
   flutter_page_indicator:
     path: ../
 
-  transformer_page_view:
-    path: /Users/jzoom/SourceCode/transformer_page_view
+  another_transformer_page_view: ^1.0.0
 
 dev_dependencies:
   flutter_test:

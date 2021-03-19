@@ -1,3 +1,6 @@
+## [1.0.0]
+    * Migrate to null-safety
+
 ## [0.0.3]
     * Fix bugs
     * Support loop mode for layout: PageIndicatorLayout.COLOR & PageIndicatorLayout.COLOR.
