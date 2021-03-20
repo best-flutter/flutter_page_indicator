@@ -24,7 +24,7 @@ dependencies:
     path: ../
 
   transformer_page_view:
-    path: /Users/jzoom/SourceCode/transformer_page_view
+    path: /Users/pedro/dev/PESSOAL/tmp/transformer_page_view
 
 dev_dependencies:
   flutter_test:
