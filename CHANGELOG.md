@@ -1,3 +1,6 @@
+## [0.1.0]
+    * Flutter 2.0 and Null Safety compatibility
+
 ## [0.0.3]
     * Fix bugs
     * Support loop mode for layout: PageIndicatorLayout.COLOR & PageIndicatorLayout.COLOR.
