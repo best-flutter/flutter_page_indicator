@@ -123,12 +123,12 @@ class ScalePainter extends BasePainter {
         : radius + ((index + 1) * (size + space));
 
     double progress = page - index;
-    _paint.color = Color.lerp(widget.activeColor, widget.color, progress);
+    _paint.color = Color.lerp(widget.activeColor, widget.color, progress)!;
     //last
     canvas.drawCircle(new Offset(radius + (index * (size + space)), radius),
         lerp(radius, radius * widget.scale, progress), _paint);
     //first
-    _paint.color = Color.lerp(widget.color, widget.activeColor, progress);
+    _paint.color = Color.lerp(widget.color, widget.activeColor, progress)!;
     canvas.drawCircle(new Offset(secondOffset, radius),
         lerp(radius * widget.scale, radius, progress), _paint);
   }
@@ -154,12 +154,12 @@ class ColorPainter extends BasePainter {
         ? radius
         : radius + ((index + 1) * (size + space));
 
-    _paint.color = Color.lerp(widget.activeColor, widget.color, progress);
+    _paint.color = Color.lerp(widget.activeColor, widget.color, progress)!;
     //left
     canvas.drawCircle(
         new Offset(radius + (index * (size + space)), radius), radius, _paint);
     //right
-    _paint.color = Color.lerp(widget.color, widget.activeColor, progress);
+    _paint.color = Color.lerp(widget.color, widget.activeColor, progress)!;
     canvas.drawCircle(new Offset(secondOffset, radius), radius, _paint);
   }
 }
@@ -330,12 +330,12 @@ class PageIndicator extends StatefulWidget {
   final double activeSize;
 
   PageIndicator(
-      {Key key,
+      {Key? key,
       this.size: 20.0,
       this.space: 5.0,
-      this.count,
+      required this.count,
       this.activeSize: 20.0,
-      this.controller,
+      required this.controller,
       this.color: Colors.white30,
       this.layout: PageIndicatorLayout.SLIDE,
       this.activeColor: Colors.white,
